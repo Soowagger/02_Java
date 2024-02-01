@@ -1,0 +1,12 @@
+package edu.kh.variable.practice;
+
+public class CastingPractice1 {
+	
+	public static void main(String[] args) {
+		int iNum = 10;
+		int iNum = 4;
+		
+		float fNum = 3.0f;
+		
+	}
+}
