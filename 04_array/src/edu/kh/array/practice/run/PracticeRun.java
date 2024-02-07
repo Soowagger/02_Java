@@ -8,5 +8,15 @@ public class PracticeRun {
 		PracticeService ps = new PracticeService();
 		// ps.practice1();
 		// ps.practice2();
+		// ps.practice3();
+		// ps.practice4();
+		// ps.practice5();
+		// ps.practice6();
+		// ps.practice7();
+		// ps.practice8(); 못품 arr.lenght - i 이용해보기
+		   ps.practice9();
+		
 	}
 }
+
+
