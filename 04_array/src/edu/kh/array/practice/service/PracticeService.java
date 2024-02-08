@@ -1,6 +1,5 @@
 package edu.kh.array.practice.service;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class PracticeService {
@@ -264,6 +263,8 @@ public class PracticeService {
 		
 		// 0 1 2 3 4 
 		
+		// 못품 arr.lenght - i 이용해보기
+		
 		
 		System.out.print("정수 : " );
 		int input = sc.nextInt();
@@ -277,38 +278,21 @@ public class PracticeService {
 		int[] arr = new int[input];
 		String str = "";
 		
-		int count = 0;
-		
-		for(int i=0; i<arr.length; i++) {
-			
-			for(int j=0; j<arr.length; j++) {
-				count++;
-			}
-			
-			
-			
-			str += count;
-		}
-		
-		System.out.println(count);
-		for(int i=0; i<arr.length; i++) {
-			
-			arr[i] = i + 1;			
-			
-			if(i > i/2) {
-				arr[i] = i -1; 
-			}
-			
 
 		
-			if(i < input-1) {
-				
-			str += arr[i]+ ", ";
+		for(int i=0; i<arr.length; i++) {
+		
+			arr[i] = i+1;
 			
-			} else {
-				str += arr[i];
+			if(i%2 > 1) {
+				arr[i] = arr.length - i;		
 			}
+			str += arr[i];
+			
 		}
+		
+			
+			
 		System.out.println(str);
 		 
 		
