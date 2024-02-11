@@ -28,16 +28,25 @@ public class SnackMenu {
 		System.out.print("가격 : ");
 		int price = sc.nextInt();
 		
-		System.out.println("저장 완료되었습니다.");
+		
+		
+		scr.saveData(kind, name, flavor, numOf, price);
+		
+		System.out.println();
+		
 		System.out.print("저장한 정보를 확인하시겠습니까?(y/n) : ");
 		char input = sc.next().charAt(0);
 		
+		
+		
 		if(input == 'y') {
-			System.out.printf("%s(%s - %s) %d개 %d원", kind, name, flavor, numOf, price);
+			//System.out.printf("%s(%s - %s) %d개 %d원", kind, name, flavor, numOf, price);
+			System.out.printf(scr.confirmData());
 		} else {
 			return;
 		}
-			
+		
+	
 		
 	}
 	

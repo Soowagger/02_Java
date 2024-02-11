@@ -1,5 +1,7 @@
 package edu.kh.array.practice.service;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class PracticeService {
@@ -278,17 +280,22 @@ public class PracticeService {
 		int[] arr = new int[input];
 		String str = "";
 		
-
+		// 1 2 3 4 5 
+		// 0 1 2 3 4
 		
 		for(int i=0; i<arr.length; i++) {
 		
 			arr[i] = i+1;
 			
-			if(i%2 > 1) {
+			if(i > arr.length / 2 ) {
 				arr[i] = arr.length - i;		
 			}
+			
 			str += arr[i];
 			
+			if(i < arr.length -1) {
+				str += ", ";
+			}
 		}
 		
 			
@@ -326,6 +333,195 @@ public class PracticeService {
 		System.out.println("발생한 난수 : " + str);
 		
 	}
+	
+	
+	public void practice10() {
+		/*
+		10개의 값을 저장할 수 있는 정수형 배열을 선언 및 할당하고,
+		1~10 사이의 난수를 발생시켜 배열에 초기화 후
+		배열 전체 값과 그 값 중에서 최대값과 최소값을 출력하세요.
+		발생한 난수 : 5 3 2 7 4 8 6 10 9 10
+		최대값 : 10
+		최소값 : 2
+		*/
+		
+		int[] arr = new int[10];
+		
+		String str = "";
+		
+		int max = 0;
+		int min = 11;
+		
+		for(int i = 0; i < 10; i++) {
+			arr[i] = (int)(Math.random() * 10 + 1);
+			
+			if (arr[i] > max) {
+				max = arr[i];
+			} 
+			
+			if (arr[i] < min) {
+				min = arr[i];
+			}
+			
+			str += arr[i] + " ";
+		}
+		
+		System.out.println("발생한 난수 : " + str);
+		System.out.println("최대값 : " + max);
+		System.out.println("최소값 : " + min);
+		
+	}
+	
+	public void practice11() {
+	/*
+	 10개의 값을 저장할 수 있는 정수형 배열을 선언 및 할당하고
+	 1~10 사이의 난수를 발생시켜 중복된 값이 없게 배열에 초기화한 후 출력하세요.
+	 4 1 3 6 9 5 8 10 7 2	 
+	 */
+		
+		
+		int[] arr = new int[10];
+		
+		String str = "";
+		
+		for(int i = 0; i < 10; i++) {
+			int random = (int)(Math.random() * 10 + 1);
+			
+			arr[i] = random;
+			
+			// arr[0] = 3
+			// arr[1] = 3
+			
+			for(int x = 0; x < i; x++) {
+				
+				if(random == arr[x]) {
+
+					break;
+				}
+			}
+		}
+		
+		
+		for(int i = 0; i < arr.length; i++) {
+			str += arr[i] + " ";
+		}
+		
+		System.out.println(str);
+		
+	}
+	
+//	 public void practice12() {
+//		/*
+//		로또 번호 자동 생성기 프로그램을 만들기.
+//		(중복 값 없이 오름차순으로 정렬하여 출력하세요.)
+//
+//		[실행 화면]
+//		3 4 15 17 28 40
+//		*/
+//		int[] lotto = new int[6];
+//		
+//		
+//		// 1 < x < 46
+//		
+//		String str = "";
+//		
+//		for(int i = 0; i < lotto.length; i++) {
+//			
+//			int random = (int)(Math.random()* 45 + 1);
+//			
+//			lotto[i] = random;
+//			
+//			for(int x = 0; x < i; x++) {
+//				
+//				if(lotto[x] == random) {
+//					
+//					i--;
+//					
+//					break;
+//				}
+//			}
+//		}
+//		
+//		for(int i=0; i < lotto.length; i++) {
+//			
+//			str += lotto[i] + " ";
+//		}
+//		
+//		System.out.println(str);
+//
+//	}
+	
+	
+	public void practice13() {
+		/*
+		문자열을 입력 받아 문자열에 어떤 문자가 들어갔는지 배열에 저장하고
+		문자의 개수와 함께 출력하세요.
+
+		[실행 화면]
+		문자열 : application
+		문자열에 있는 문자 : a, p, l, i, c, t, o, n
+		문자 개수 : 8
+		*/
+		
+		
+		
+		System.out.print("문자열 : ");
+		String input = sc.nextLine();
+		
+		
+		char[] arr = new char[input.length()];
+		String str = "";
+	
+		int count = 0;
+		
+		for(int i = 0; i < arr.length; i++) {
+				
+			arr[i] = input.charAt(i);
+			
+			for(int x=0; x < i; x++) {
+				if(arr[x] == input.charAt(i)) {
+					arr[i] = '"';
+					
+				}
+			}	
+		}	
+	
+		
+		for(int i=0; i<arr.length; i++) {
+			
+			if(arr[i] !='"' && i < arr.length-1) {
+				str += arr[i] + ", ";
+			} else if (arr[i] !='"' && i < arr.length) {
+				str += arr[i];
+			}
+			
+			if(arr[i] == '"') {
+				count++;
+			}
+			
+		}
+		
+
+		
+		
+		System.out.println("문자열에 있는 문자 : " + str);
+		System.out.println("문자 개수 : " + (arr.length - count));
+		
+		
+		
+	
+	
+		
+		
+		
+		
+	}
+	
+	
+		
+		
+		
+	
 	
 	
 }

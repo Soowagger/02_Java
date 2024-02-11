@@ -21,12 +21,13 @@ public class Snack {
 		this.flavor = flavor;
 		this.numOf = numOf;
 		this.price = price;
+		
 	}
 	
 	// 기능
 	
 	public String information() {
-		
+		return kind + "(" + name + " - " + flavor + ") " + numOf + "개 " + price + "원";
 	}
 	
 	
