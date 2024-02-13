@@ -41,7 +41,7 @@ public class SnackMenu {
 		
 		if(input == 'y') {
 			//System.out.printf("%s(%s - %s) %d개 %d원", kind, name, flavor, numOf, price);
-			System.out.printf(scr.confirmData());
+			System.out.println(scr.confirmData());
 		} else {
 			return;
 		}

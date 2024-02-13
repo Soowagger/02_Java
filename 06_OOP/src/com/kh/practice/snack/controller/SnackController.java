@@ -23,15 +23,17 @@ public class SnackController {
 		s.setFlavor(flavor);
 		s.setNumOf(numOf);
 		s.setPrice(price);
-				
+		
 		
 		System.out.print("저장 완료되었습니다.");
 
 		return confirmData();
+		//return s.information();
 		
 	}
 	
 	public String confirmData() { // 저장된 데이터를 반환하는 메소드
+		
 		return s.information();
 	}
 }
