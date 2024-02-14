@@ -16,11 +16,11 @@ public class Snack {
 	// 매개변수 생성자
 	public Snack(String kind, String name, String flavor,
 				int numOf, int price) {
-//		this.kind = kind;		
-//		this.name = name;
-//		this.flavor = flavor;
-//		this.numOf = numOf;
-//		this.price = price;
+		this.kind = kind;		
+		this.name = name;
+		this.flavor = flavor;
+		this.numOf = numOf;
+		this.price = price;
 		
 	}
 	

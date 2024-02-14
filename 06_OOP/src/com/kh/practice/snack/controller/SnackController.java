@@ -25,9 +25,7 @@ public class SnackController {
 		s.setPrice(price);
 		
 		
-		System.out.print("저장 완료되었습니다.");
-
-		return confirmData();
+		return "저장 완료되었습니다.";
 		//return s.information();
 		
 	}

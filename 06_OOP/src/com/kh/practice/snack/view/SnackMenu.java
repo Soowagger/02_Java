@@ -30,9 +30,8 @@ public class SnackMenu {
 		
 		
 		
-		scr.saveData(kind, name, flavor, numOf, price);
-		
-		System.out.println();
+				
+		System.out.println(scr.saveData(kind, name, flavor, numOf, price));
 		
 		System.out.print("저장한 정보를 확인하시겠습니까?(y/n) : ");
 		char input = sc.next().charAt(0);
