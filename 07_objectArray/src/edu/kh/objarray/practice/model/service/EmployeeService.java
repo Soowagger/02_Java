@@ -28,11 +28,12 @@ public class EmployeeService {
 			sc.nextLine();
 			
 			switch (sel) {
-			case 1:  break;
-			case 2:  break;
-			case 3:  break;
-			case 4:  break;
-			case 5:  break;
+			case 1: initEmployee(); break;
+			case 2: System.out.println(allEmployeesInformation()); break;
+			case 3: System.out.println(searchEmployee()); break;
+			case 4: System.out.println(salaryCheck()); break;
+			case 5: System.out.printf("\n=== 모든 사원 급여 합/연봉 합 ===\n전 직원 급여 합 : %d \n전 직원 연봉 합 : %d\n\n", 
+					allSalaryCheck(), allSalaryCheck()*12); break;
 			case 6:  break;
 			case 0: System.out.println("프로그램 종료."); break;
 
@@ -47,27 +48,73 @@ public class EmployeeService {
 	public void initEmployee() {
 		// 사번, 이름, 부서, 직급, 급여 순서로 입력받기
 		
-		System.out.print("사번 : ");
-		//syso
-		
+	
 		for(int i=0; i < employees.length; i++) {
-					
-			//employees[i] = new Employee(num, name, dept, rank, salary);
+			
+			System.out.println();
+			
+			System.out.println("===" + (i+1) + "번째 사원 정보 입력" + "===");
+			
+			System.out.print("사번 : ");
+			int num = sc.nextInt();
+			
+			System.out.print("이름 : ");
+			String name = sc.next();
+			
+			System.out.print("부서 : ");
+			String dept = sc.next();
+			
+			System.out.print("직급 : ");
+			String rank = sc.next();
+			
+			System.out.print("급여 : ");
+			int salary = sc.nextInt();
+			
+			employees[i] = new Employee(num, name, dept, rank, salary);
+				
 		}
+		
+		
 	}
 	
 	
 	// 모든 직원 정보를 하나의 문자열로 반환
 	public String allEmployeesInformation() {
 		
-		return null;
+		System.out.println();
+		
+		String str = "";
+		
+		for(int i=0; i < employees.length; i++) {
+			
+			str += "사번 : " + employees[i].getNum() + ", 이름 : " + employees[i].getName() + 
+					", 부서 : " + employees[i].getDept() + ", 직급 : " + employees[i].getRank() +
+					", 급여 : " + employees[i].getSalary() + "\n";
+		}
+		
+		return str;
 	}
 	
 	// 특정 사원 정보 반환 메소드(이름 검색)
 	// 일치하는 이름이 없을 경우 "일치하는 이름의 사원이 없습니다." 반환
 	public String searchEmployee() {
 		
-		return null;
+		System.out.println("\n=== 특정 사원 정보 출력(이름 검색) ===");
+		
+		System.out.print("이름 입력 : ");
+		String nameInput = sc.next();
+		
+		for(int i=0; i < employees.length; i++) {
+			
+			if(employees[i].getName().equals(nameInput)) {
+				
+				return "사번 : " + employees[i].getNum() + ", 이름 : " + employees[i].getName() + 
+						", 부서 : " + employees[i].getDept() + ", 직급 : " + employees[i].getRank() +
+						", 급여 : " + employees[i].getSalary() + "\n";
+			}
+			
+		}	
+		return "일치하는 이름의 사원이 없습니다.\n";		
 	}
 	
 	
@@ -75,20 +122,50 @@ public class EmployeeService {
 	// 일치하지 않는 경우 "사번이 일치하는 직원 없습니다." 반환
 	public String salaryCheck() {
 		
-		return null;
+		System.out.println("\n=== 급여/연봉 조회 ===");
+		
+		System.out.print("사번 입력 : ");
+		int numInput = sc.nextInt();
+		
+		for(int i=0; i < employees.length; i++) {
+			
+			if(employees[i].getNum() == numInput) {
+				
+				return "급여 : " + employees[i].getSalary() + " / 연봉 : "
+						+ employees[i].getSalary()*12 + "\n";
+			}
+			
+		}	
+		
+		return "사번이 일치하는 직원 없습니다.\n";
 	}
 	
 	
 	// 모든 사원 급여 합 반환
 	public int allSalaryCheck() {
+				
+		int sum = 0;
 		
-		return 0;
+		for(int i=0; i < employees.length; i++) {
+			
+			sum += employees[i].getSalary();
+		}
+		
+		return sum;
 	}
 	
 	// 모든 직원중 급여가 가장 높은 직원 출력
 	// (동일한 급여인 경우 사번이 낮은 사람이 출력)
 	public void topSalaryEmployee() {
-	
+		
+		int max = 0;
+		
+		for(int i=0; i < employees.length; i++) {
+			
+			if(employees[i].getSalary() > max) {
+				max = employees[i].getSalary();
+			}
+		}
 		
 	}
 	
