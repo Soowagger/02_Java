@@ -19,7 +19,7 @@ public class Employee extends Person {
 
 	@Override
 	public String getInfo() {
-		return toString().format("직원이 추가되었습니다 - ID : %s , 이름 : %s , 직책 : %s", id, name, position);
+		return toString().format("ID : %s , 이름 : %s , 직책 : %s", id, name, position);
 	}	
 	
 	

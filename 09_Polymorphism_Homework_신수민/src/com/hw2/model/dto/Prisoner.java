@@ -4,6 +4,7 @@ public class Prisoner extends Person {
 	
 	private String crime; //죄목
 	
+	
 	public Prisoner(String id, String name, String crime) {
 		super(id, name);
 		this.crime = crime;
@@ -19,7 +20,7 @@ public class Prisoner extends Person {
 
 	@Override
 	public String getInfo() {
-		return null;
+		return toString().format("ID : %s , 이름 : %s , 죄목 : %s", id, name, crime);
 	}
 	
 }

@@ -10,6 +10,7 @@ public class Company implements ManagementSystem {
 	private int employeeCount; // 직원수
 	
 	public Company(int size) {
+				
 		employees = new Employee[size];
 		employeeCount = 0;
 	}
@@ -34,31 +35,52 @@ public class Company implements ManagementSystem {
 
 	@Override
 	public void addPerson(Person person) {
-		if(employeeCount==0) {
-				
-				employees[0] = new Employee(person.getId(),person.getName(), );
-				employees[1] = new Employee("EMP02", "박명수", "개발팀");
 		
-		
-			for(Employee emp : employees) {
+		if(employees.length > employeeCount) {
 				
-				if(emp == null) {
-					System.out.println("인원이 모두 충원되었습니다.");break;
-				}
-				System.out.println(emp.getInfo());	
-			}
+			employees[employeeCount] = (Employee)person;
+			
+			System.out.println("직원이 추가되었습니다 - " + employees[employeeCount].getInfo());
+			
+			employeeCount++;
+		
+		} else {
+			System.out.println("인원이 모두 충원되었습니다.");
 		}
+		
 	}
 
 	@Override
-	public void removePerson() {
-		// TODO Auto-generated method stub
+	public void removePerson(String id) {
+		
+		for(int i = 0; i < employees.length; i++) {
+			
+			if(employees[i].getId().equals(id)) {
+				
+				System.out.println("직원이 삭제되었습니다 - " + employees[i].getInfo());
+				
+				employees[i] = null;
+				
+				break;
+			} 
+			
+			
+		}
+		
 		
 	}
 
 	@Override
 	public void displayAllPersons() {
-		// TODO Auto-generated method stub
+		
+		System.out.println("전체 직원 명단 : ");
+		
+		for( Employee emp : employees) {
+			
+			if(emp == null) continue;
+			
+			System.out.println(emp.getInfo());			
+		}
 		
 	}
 }

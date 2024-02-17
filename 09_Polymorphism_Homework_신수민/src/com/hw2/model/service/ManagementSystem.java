@@ -5,7 +5,7 @@ import com.hw2.model.dto.Person;
 public interface ManagementSystem {
 	
 	void addPerson(Person person);
-	void removePerson();
+	void removePerson(String id);
 	void displayAllPersons();
 	
 }
