@@ -1,11 +1,13 @@
-package edu.kh.collection.model.service;
+package edu.kh.collection.pack1.model.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import edu.kh.collection.model.vo.Student;
+import edu.kh.collection.pack1.model.vo.Student;
 
 
 public class StudentService {
@@ -86,6 +88,8 @@ public class StudentService {
 			System.out.println("4. 학생 정보 제거");
 			System.out.println("5. 이름으로 검색(일치)");
 			System.out.println("6. 이름으로 검색(포함)");
+			System.out.println("7. 나이순으로 정렬"); // Comparable
+			System.out.println("8. 이름순으로 정렬"); // comparator
 			System.out.println("0. 프로그램 종료");
 			
 			System.out.print("메뉴 번호 선택 : ");
@@ -102,6 +106,8 @@ public class StudentService {
 				case 4 : System.out.println(removeStudent()); break;
 				case 5 : searchName1(); break;
 				case 6 : searchName2(); break;
+				case 7 : sortByAge(); break;
+				case 8 : sortByName(); break;
 				case 0 : System.out.println("프로그램 종료.."); break;
 				default : System.out.println("메뉴에 작성된 번호만 입력하세요!");	
 				}
@@ -370,9 +376,57 @@ public class StudentService {
 			System.out.println("검색 결과가 없습니다.");
 		}
 		
-		
-		
-		
 		 
+	}
+	
+	public void sortByAge() {
+		/* studentList 정보
+		
+		private List<Student> studentList = new ArrayList<Student>(); 
+		
+		public StudentService() { // 기본 생성자
+		studentList.add( new Student("홍길동", 25, "서울시 중구", 'M', 90) );
+		studentList.add( new Student("고영희", 23, "경기도 안산시", 'F', 100) );
+		studentList.add( new Student("강아지", 30, "서울시 강남구", 'M', 80) );
+		studentList.add( new Student("오미나", 27, "충북 청주시", 'F', 90) );
+		studentList.add( new Student("박주희", 24, "서울시 서대문구", 'F', 70) );
+		}
+		 */
+		
+		
+		// * 나이에 따라 오름차순 정렬
+		Collections.sort(studentList);
+		// public class Student implements Comparable<Student> {
+		// 		1) Student 클래스에 가서 Comparable 인터페이스 상속 후
+		//		2) compareTo 오버라이딩
+		// }
+		
+		// * 정렬된 결과 출력
+		for(Student std : studentList) {
+			System.out.println(std);
+		}
+		
+	}
+	
+	public void sortByName() {
+		
+		// 1) 이름에 따라 정렬하는 Comparator 객체 생성
+		Comparator<Student> nameComparator = Comparator.comparing(Student::getName);
+		// * Comparator 인터페이스 static 메서드인 comparing()을 사용하여 Comparator를 생성
+		// -> comparing()은 주어진 키(key)를 기반으로 객체를 비교함
+		// * Student::getName : 메서드 레퍼런스(Method Reference)
+		// -> Student 클래스의 getName() 메서드를 가리키는 것
+		// --> 이 메서드를 비교의 키로 사용하여 각 Student 객체를 비교하고 정렬함
+		// ---> Comparator.comparing(Student::getName)은 이름(name)을 기준으로
+		//      학생(Student) 객체를 비교하는 Comparator를 생성
+		
+		
+		// 2) 이름에 따라 정렬
+		Collections.sort(studentList, nameComparator);
+		
+		// 정렬된 결과 출력
+		for(Student std : studentList) {
+			System.out.println(std);
+		}
 	}
 }
