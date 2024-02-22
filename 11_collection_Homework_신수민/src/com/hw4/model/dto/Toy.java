@@ -1,5 +1,7 @@
 package com.hw4.model.dto;
 
+import java.util.Objects;
+
 public class Toy {
 	
 	private String name;
@@ -85,6 +87,26 @@ public class Toy {
 	public String toString() {
 		return String.format("이름 : %s / 가격 : %d / 색상 : %s / 사용가능연령 : %s / 제조년월일 : %s / 재료 : %s",
 				name, price, color, age, day, material);
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(age, color, day, material, name, price);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Toy other = (Toy) obj;
+		return age == other.age && Objects.equals(color, other.color) && Objects.equals(day, other.day)
+				&& Objects.equals(material, other.material) && Objects.equals(name, other.name) && price == other.price;
 	}
 
 
