@@ -414,7 +414,7 @@ public class ByteService {
 			
 			// 읽어왔던 내용 bytes를 bos를 이용해서 출력
 			bos.write(bytes);
-			bos.flush(); // 스트름에 남아있는 데이터 모두 밀어내기
+			bos.flush(); // 스트림에 남아있는 데이터 모두 밀어내기
 			
 			System.out.println("복사완료 : " + copy);
 			
