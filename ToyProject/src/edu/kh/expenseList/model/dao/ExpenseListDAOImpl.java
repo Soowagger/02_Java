@@ -57,7 +57,7 @@ public class ExpenseListDAOImpl implements ExpenseListDAO {
 			
 			expList = new ArrayList<Expense>();
 			
-			expList.add(new Expense("식비", "신용", 10000, "중식 비용 결제", LocalDateTime.now()));
+			expList.add(new Expense("중식비", "신용", 10000, "중식 비용 결제", LocalDateTime.now()));
 			expList.add(new Expense("교통비", "체크", 1500, "지하철 비용 결제", LocalDateTime.now()));
 			expList.add(new Expense("미용비", "현금", 80000, "파마 비용 결제", LocalDateTime.now()));
 			
@@ -161,7 +161,48 @@ public class ExpenseListDAOImpl implements ExpenseListDAO {
 	 * 수정을 위한 디테일 뷰
 	 */
 	@Override
-	public Expense expDetailView(int index) {
+	public Expense expUpdateView(int index) {
+		
+		if(index < 0 || index >= expList.size()) { 
+			return null;
+		}
+
+		return expList.get(index);
+	}
+
+	
+	/**
+	 * 5. 수정
+	 */
+	@Override
+	public int expUpdate(int index, String category, String method, int amount, String detail) throws Exception {
+		
+		// 객체 생성
+		Expense exp = new Expense(category, method, amount, detail, 
+								expList.get(index).getExpDate());
+		
+		Expense update = expList.set(index, exp);
+		
+		if(update == null) {
+			return -1;
+		} else {
+			saveFile();
+			return 1;
+			
+		} 
+			
+		
+		
+		
+	}
+	
+	
+	
+	/**
+	 * 7. 메모 view
+	 */
+	@Override
+	public Expense expMemo(int index) {
 		
 		if(index < 0 || index >= expList.size()) { 
 			return null;

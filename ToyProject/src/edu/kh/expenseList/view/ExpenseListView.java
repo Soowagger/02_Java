@@ -54,6 +54,7 @@ public class ExpenseListView {
 				case 4 : expRemove(); break;
 				case 5 : expUpdate(); break;
 				case 6 : /* expSum(); */ break;
+				case 7 : expMemo(); break;
 				case 0 : System.out.println("### 프로그램이 종료되었습니다. ###"); break;
 				default : System.out.println("!!! 메뉴에 작성된 번호만 입력해주세요!!!");
 				}
@@ -89,6 +90,7 @@ public class ExpenseListView {
 		System.out.println("4. Expense Remove");
 		System.out.println("5. Expense Update");
 		System.out.println("6. Expense Total Amount");
+		System.out.println("7. Expense Memo(Detail) View");
 		System.out.println("0. EXIT");
 		
 		System.out.print("Select Menu Number ==> ");
@@ -118,7 +120,7 @@ public class ExpenseListView {
 		System.out.printf("[ 5만원 이상 건 수 / 전체 지출 건 수 : %d / %d ]\n"
 				, overCount, expList.size());
 		System.out.println("--------------------------------------------------------------------");
-		System.out.printf("%-3s %10s       %10s    %s      %s\n", "인덱스", "등록일", "결제 수단","지출 유형" ,"금액");
+		System.out.printf("%-3s %10s       %10s      %s       %s\n", "인덱스", "등록일", "결제 수단","지출 유형" ,"금액");
 		System.out.println("--------------------------------------------------------------------");
 		
 		for(int i=0; i < expList.size(); i++) {
@@ -131,14 +133,14 @@ public class ExpenseListView {
 			
 			int amount = expList.get(i).getAmount();
 			
-			System.out.printf("[%3d]  %20s      (%s)  %8s        %d원\n", i, expDate, method, category, amount);
+			System.out.printf("[%3d]  %20s      (%2s)         %3s  %10d원\n", i, expDate, method, category, amount);
 		}
 		
 	}
 	
 	
 	/**
-	 * 2. 카테고리별 보기(추후 구현)
+	 * 2. 카테고리별 보기
 	 */
 	public void expListViewByCategory() {
 		System.out.println("\n************[2.Expense List View By Category]************");
@@ -154,7 +156,7 @@ public class ExpenseListView {
 	public void expAdd() throws Exception {
 		System.out.println("\n************[3.Expense Add]************");
 		
-		System.out.println("**[지출 유형 예시 : 주거비 / 식비 / 교통비 / 여가비...]**\n");
+		System.out.println("**[지출 유형 예시 : 생활비 / 석식비 / 교통비 / 여가비...]**\n");
 		System.out.print("1. 지출 유형 입력 : ");
 		String category = br.readLine();
 		
@@ -164,7 +166,7 @@ public class ExpenseListView {
 		System.out.print("3. 지출 금액 입력 : ");
 		int price = Integer.parseInt(br.readLine());	
 		
-		System.out.print("4. 지출 내용 입력 : ");
+		System.out.print("4. 지출 상세 / 메모 입력 : ");
 		String detail = br.readLine();
 		
 		int index = service.expAdd(category, method, price, detail);
@@ -204,12 +206,36 @@ public class ExpenseListView {
 		System.out.print("Select index to update >> ");
 		int index = Integer.parseInt(br.readLine());
 		
-		String expDetail = service.expDetailView(index);
-		if(expDetail == null) System.out.println("Error : 해당 인덱스가 존재하지 않습니다.");
+		String expDetail = service.expUpdateView(index);
+		
+		if(expDetail == null) {
+			System.out.println("[Error] : 해당 인덱스가 존재하지 않습니다.");
+			return;
+		} 
 		
 		System.out.println(expDetail);
 		
-		// @@@@@@@@@@@@@@@@@@@@@여기서부터
+		System.out.println("--------------------------------------------------------------------\n");
+		
+		System.out.print("1. 수정할 결제 수단 : ");
+		String method = br.readLine();
+		
+		System.out.print("2. 수정할 지출 유형 : ");
+		String category = br.readLine();
+		
+		System.out.print("3. 수정할 금액 : ");
+		int amount = Integer.parseInt(br.readLine());
+		
+		System.out.print("4. 수정할 지출 상세 / 메모  : ");
+		String detail = br.readLine();
+		
+		int result = service.expUpdate(index, category, method, amount, detail);
+		
+		if(result == 1) {
+			System.out.println("[성공] 정상적으로 수정되었습니다.");
+		} else if (result == -1) {
+			System.out.println("[실패] 수정이 정상 진행되지 않았습니다.");
+		}
 	}
 	
 	
@@ -221,6 +247,25 @@ public class ExpenseListView {
 		
 		
 	}
+
+	public void expMemo() throws Exception {
+		
+		System.out.println("\n************[7.Expense Memo(Detail) View]************");
+		
+		System.out.print("Index number >> ");
+		int index = Integer.parseInt(br.readLine());
+		
+		String expMemo = service.expMemo(index);
+		
+		if(expMemo == null) {
+			System.out.println("[Error] : 해당 인덱스가 존재하지 않습니다.");
+			return;
+		}
+		
+		System.out.println(expMemo); 
+		
+	}
+	
 	
 }
 

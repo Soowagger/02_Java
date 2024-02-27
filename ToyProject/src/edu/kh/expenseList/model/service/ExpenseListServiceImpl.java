@@ -80,12 +80,12 @@ public class ExpenseListServiceImpl implements ExpenseListService {
 			
 			System.out.printf("\n\n[지출 유형 : %s]\n", category);
 			System.out.println("--------------------------------------------------------------------");
-			System.out.printf("%-3s %10s       %10s    %s      %s\n", "인덱스", "등록일", "결제 수단","지출 유형" ,"금액");
+			System.out.printf("%-3s   %10s       %10s      %s       %s\n", "No.", "등록일", "결제 수단","지출 유형" ,"금액");
 			System.out.println("--------------------------------------------------------------------");
 			int index = 1;
 			
 			for(Expense e : exp) {
-				System.out.printf("[%3d]  %20s      (%s)  %8s        %d원\n", index, dateFormat(e.getExpDate()), e.getMethod(), category, e.getAmount());
+				System.out.printf("[%2d]  %20s      (%2s)         %3s  %10d원\n", index, dateFormat(e.getExpDate()), e.getMethod(), category, e.getAmount());
 				index++;
 			}
 		}
@@ -116,9 +116,9 @@ public class ExpenseListServiceImpl implements ExpenseListService {
 
 	
 	@Override
-	public String expDetailView(int index) {
+	public String expUpdateView(int index) {
 		
-		Expense exp = dao.expDetailView(index);
+		Expense exp = dao.expUpdateView(index);
 		
 		if(exp == null) return null;
 		
@@ -126,10 +126,41 @@ public class ExpenseListServiceImpl implements ExpenseListService {
 		
 		sb.append("\n=======================[Before the update]==========================\n");
 		sb.append("--------------------------------------------------------------------\n");
-		sb.append(String.format("%-3s %10s       %10s    %s      %s\n", "인덱스", "등록일", "결제 수단","지출 유형" ,"금액"));
+		sb.append(String.format("%-3s %10s       %10s      %s       %s\n", "인덱스", "등록일", "결제 수단","지출 유형" ,"금액"));
 		sb.append("--------------------------------------------------------------------\n");
-		sb.append(String.format("[%3d]  %20s      (%s)  %8s        %d원\n", index, dateFormat(exp.getExpDate()), exp.getMethod(), exp.getCategory(), exp.getAmount()));
+		sb.append(String.format("[%3d]  %20s      (%2s)         %3s  %10d원", 
+				index, dateFormat(exp.getExpDate()), exp.getMethod(), exp.getCategory(), exp.getAmount()));
 		
+		return sb.toString();
+	}
+
+
+	@Override
+	public int expUpdate(int index, String category, String method, int amount, String detail) throws Exception { 
+		
+		return dao.expUpdate(index, category, method, amount, detail);
+	}
+
+
+	@Override
+	public String expMemo(int index) {
+		
+		Expense exp = dao.expMemo(index);
+		
+		if(exp == null) return null;
+
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("\nHello, User!\n");
+		sb.append("--------------------------------------------------------------------\n");
+		sb.append(String.format("* 지출일 : %s\n", dateFormat(exp.getExpDate())));
+		sb.append(String.format("* 결제 수단 : %s\n", exp.getMethod()));
+		sb.append(String.format("* 결제 금액 : %d원\n", exp.getAmount()));
+		sb.append("--------------------------------------------------------------------\n");
+		sb.append(String.format("[Detail / Memo] : %s\n", exp.getDetail()));
+		sb.append("--------------------------------------------------------------------");
+		
+			
 		return sb.toString();
 	}
 

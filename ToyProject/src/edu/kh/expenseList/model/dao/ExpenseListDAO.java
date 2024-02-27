@@ -16,7 +16,11 @@ public interface ExpenseListDAO {
 
 	List<Expense> expListViewByCategory();
 
-	Expense expDetailView(int index);
+	Expense expUpdateView(int index);
+
+	int expUpdate(int index, String category, String method, int amount, String detail )throws Exception;
+
+	Expense expMemo(int index);
 
 	
 

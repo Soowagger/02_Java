@@ -18,7 +18,11 @@ public interface ExpenseListService {
 
 	void expListViewByCategory();
 
-	String expDetailView(int index);
+	String expUpdateView(int index);
+
+	int expUpdate(int index, String category, String method, int amount, String detail) throws Exception;
+
+	String expMemo(int index);
 
 	
 
