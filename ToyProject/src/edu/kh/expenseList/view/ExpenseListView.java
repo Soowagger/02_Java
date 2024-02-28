@@ -11,9 +11,6 @@ import edu.kh.expenseList.model.service.ExpenseListService;
 import edu.kh.expenseList.model.service.ExpenseListServiceImpl;
 
 // View 입출력
-/**
- * 
- */
 public class ExpenseListView {
 	
 	// 필드
@@ -24,8 +21,8 @@ public class ExpenseListView {
 	public ExpenseListView() {
 		
 		try {
-			
-			service = new ExpenseListServiceImpl();
+			// 부모타입 참조변수 = 자식 객체
+			service = new ExpenseListServiceImpl(); // 다형성 업캐스팅
 			br = new BufferedReader(new InputStreamReader(System.in));
 			
 		} catch (Exception e) {
@@ -53,8 +50,7 @@ public class ExpenseListView {
 				case 3 : expAdd(); break;
 				case 4 : expRemove(); break;
 				case 5 : expUpdate(); break;
-				case 6 : /* expSum(); */ break;
-				case 7 : expMemo(); break;
+				case 6 : expMemo(); break;
 				case 0 : System.out.println("### 프로그램이 종료되었습니다. ###"); break;
 				default : System.out.println("!!! 메뉴에 작성된 번호만 입력해주세요!!!");
 				}
@@ -85,12 +81,11 @@ public class ExpenseListView {
 		System.out.println("\n********* Expense List *********\n");
 		
 		System.out.println("1. Expense List Full View");
-		System.out.println("2. Expense List View By Category");
+		System.out.println("2. Expense List View By Category & Total Amount");
 		System.out.println("3. Expense Add");
 		System.out.println("4. Expense Remove");
 		System.out.println("5. Expense Update");
-		System.out.println("6. Expense Total Amount");
-		System.out.println("7. Expense Memo(Detail) View");
+		System.out.println("6. Expense Memo(Detail) View");
 		System.out.println("0. EXIT");
 		
 		System.out.print("Select Menu Number ==> ");
@@ -240,17 +235,11 @@ public class ExpenseListView {
 	
 	
 	/**
-	 * 6. 합계 출력
+	 * 6. 상세, 메모 보기
 	 */
-	public void expSum()  {
-		
-		
-		
-	}
-
 	public void expMemo() throws Exception {
 		
-		System.out.println("\n************[7.Expense Memo(Detail) View]************");
+		System.out.println("\n************[6.Expense Memo(Detail) View]************");
 		
 		System.out.print("Index number >> ");
 		int index = Integer.parseInt(br.readLine());

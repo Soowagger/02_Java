@@ -51,8 +51,8 @@ public class ExpenseListServiceImpl implements ExpenseListService {
 
 	@Override
 	public String dateFormat(LocalDateTime expDate) {
-		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		// yyyy-MM-dd HH:mm:ss 형태 날짜 반환
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); // 날짜 변환
 		
 		String formatDate = expDate.format(formatter);
 		
@@ -73,23 +73,37 @@ public class ExpenseListServiceImpl implements ExpenseListService {
 			map.get(category).add(exp);
 		}
 		
+		int total = 0;
+		
 		for(Entry<String, List<Expense>> entry : map.entrySet()) {
 			
 			String category = entry.getKey();
 			List<Expense> exp = entry.getValue();
 			
-			System.out.printf("\n\n[지출 유형 : %s]\n", category);
+			int sum = 0;
+			
+			System.out.printf("\n\n\t\t\t[지출 유형 : %s]\n", category);
+			
 			System.out.println("--------------------------------------------------------------------");
 			System.out.printf("%-3s   %10s       %10s      %s       %s\n", "No.", "등록일", "결제 수단","지출 유형" ,"금액");
 			System.out.println("--------------------------------------------------------------------");
-			int index = 1;
+			int number = 1;
 			
 			for(Expense e : exp) {
-				System.out.printf("[%2d]  %20s      (%2s)         %3s  %10d원\n", index, dateFormat(e.getExpDate()), e.getMethod(), category, e.getAmount());
-				index++;
+				System.out.printf("[%2d]  %20s      (%2s)         %3s  %10d원\n", number, dateFormat(e.getExpDate()), e.getMethod(), category, e.getAmount());
+				number++;
+				
+				sum += e.getAmount();
+				total += sum;
 			}
+			System.out.println("--------------------------------------------------------------------");
+			System.out.printf("[%s 지출 총액] : %d원\n", category,sum);
+			System.out.println("--------------------------------------------------------------------");
 		}
-		
+		System.out.println();
+		System.out.println("--------------------------------------------------------------------");
+		System.out.printf("[Total Amount : %d원]\n", total);
+		System.out.println("--------------------------------------------------------------------");
 	}
 
 	@Override
@@ -163,17 +177,4 @@ public class ExpenseListServiceImpl implements ExpenseListService {
 			
 		return sb.toString();
 	}
-
-
-
-
-
-
-
-	
-
-
-	
-	
-	
 }

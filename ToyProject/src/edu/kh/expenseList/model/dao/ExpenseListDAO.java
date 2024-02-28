@@ -18,12 +18,7 @@ public interface ExpenseListDAO {
 
 	Expense expUpdateView(int index);
 
-	int expUpdate(int index, String category, String method, int amount, String detail )throws Exception;
+	int expUpdate(int index, String category, String method, int amount, String detail ) throws Exception;
 
 	Expense expMemo(int index);
-
-	
-
-	
-	
 }

@@ -190,16 +190,11 @@ public class ExpenseListDAOImpl implements ExpenseListDAO {
 			return 1;
 			
 		} 
-			
-		
-		
-		
 	}
 	
 	
-	
 	/**
-	 * 7. 메모 view
+	 * 6. 메모 view
 	 */
 	@Override
 	public Expense expMemo(int index) {

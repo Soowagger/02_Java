@@ -23,9 +23,4 @@ public interface ExpenseListService {
 	int expUpdate(int index, String category, String method, int amount, String detail) throws Exception;
 
 	String expMemo(int index);
-
-	
-
-	
-	
 }

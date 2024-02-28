@@ -10,7 +10,7 @@ public class Expense implements Serializable{ // 직렬화
 	private String category; // 식비, 교통비 등
 	private String method; // 결제 수단
 	private int amount; // 지출 금액
-	private String detail; // 지출 상세 내용
+	private String detail; // 지출 상세
 	private LocalDateTime expDate; // 지출 날짜
 	
 	public Expense() {}
